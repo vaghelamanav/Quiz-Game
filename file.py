@@ -1,6 +1,7 @@
 import pygame
 import sys
 import pandas as pd
+import time
 
 pygame.init()
 
@@ -11,7 +12,6 @@ mylogo = pygame.image.load('mylogo.png')
 pygame.display.set_caption("Quiz Game")
 pygame.display.set_icon(mylogo)
 
-# Load background image
 background_image = pygame.image.load("backgroundimage.jpg")
 background_image = pygame.transform.scale(background_image, (width, height))
 
@@ -20,6 +20,7 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
+BACKGROUND_COLOR = (135, 206, 250)  # Light blue background
 
 # Load questions from Excel file
 def load_questions(file_path):
@@ -113,6 +114,7 @@ while True:
     # Check if all questions have been answered
     if quiz_over:
         # Display the final score and "Game Over" message
+        
         game_over_text = question_font.render("Game Over", True, RED)
 
         text_width, text_height = question_font.size("Game Over")
@@ -120,11 +122,13 @@ while True:
         text_y = (height - text_height) // 2
         screen.blit(game_over_text, (text_x, text_y))
 
-        # Wait for a few seconds before showing the score
+
+        # Wait for a few seconds before quitting
         pygame.time.delay(1000)
 
-        print(f"Your final score: {score}/{len(questions)}")
 
+        print(f"Your final score: {score}/{len(questions)}")
+        
         # Print additional message and score
         if score == len(questions):
             print("Congratulations! You answered all questions correctly!")
@@ -132,15 +136,11 @@ while True:
             print("Well done! You passed the quiz!")
         else:
             print("Better luck next time.")
-
-        # Ask if the user wants to see the correct answers
-        answer_prompt_text = "Do you want to see the correct answers? (yes/no): "
-        answer = input(answer_prompt_text).lower()
-        if answer == "yes":
-            print("Correct answers:")
+            print("Here are the correct answers")
             for i, question in enumerate(questions):
                 print(f"{i + 1}. {question['correct_choice']}")
 
+                
         # Quit the game
         pygame.quit()
         sys.exit()
