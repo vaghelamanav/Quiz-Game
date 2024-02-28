@@ -12,7 +12,7 @@ pygame.display.set_caption("Quiz Game")
 pygame.display.set_icon(mylogo)
 
 # Load background image
-background_image = pygame.image.load("download.jpg")
+background_image = pygame.image.load("backgroundimage.jpg")
 background_image = pygame.transform.scale(background_image, (width, height))
 
 # Define colors
