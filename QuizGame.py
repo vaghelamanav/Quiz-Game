@@ -13,7 +13,7 @@ def main():
             # Add a 3-second timer
             time.sleep(3)
 
-            quiz_file = "game18.py"
+            quiz_file = "file.py"
             subprocess.run(["python", quiz_file])
 
             break
